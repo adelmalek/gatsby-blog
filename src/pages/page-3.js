@@ -8,7 +8,7 @@ const Third = () => (
   <Layout>
     <h1>Hi from the third page</h1>
     <p>Welcome to page 3</p>
-    <Link to="/">Go back to the homepage</Link>
+    <Link to="/">Vissza a főoldalra</Link>
   </Layout>
 )
 

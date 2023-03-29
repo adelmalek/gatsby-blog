@@ -1,6 +1,6 @@
 ---
 title: 'Dönts jól a pénzügyeidről'
-date: '2023-03-28'
+date: '2023-03-29'
 description: 'Hogyan hozzunk meg pénzügyi döntéseket?'
 ---
 

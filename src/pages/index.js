@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
@@ -8,44 +8,29 @@ import * as styles from "../components/index.module.css"
 
 const links = [
   {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial",
+    text: "Finax",
+    url: "https://www.finax.eu/hu",
     description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
+      "Világszínvonalú szolgáltatások, helyi hozzáféréssel",
   },
   {
-    text: "Examples",
-    url: "https://github.com/gatsbyjs/gatsby/tree/master/examples",
+    text: "Dolgos Pénz",
+    url: "https://dolgospenz.hu/",
     description:
-      "A collection of websites ranging from very basic to complex/complete that illustrate how to accomplish specific tasks within your Gatsby sites.",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Learn how to add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
+      "Fedezd fel az utat a pénzügyi szabadság felé.",
   },
 ]
 
 const samplePageLinks = [
   {
-    text: "Page 2",
+    text: "Oldal 2",
     url: "page-2",
     badge: false,
     description:
       "A simple example of linking to another page within a Gatsby site",
   },
-  { text: "TypeScript", url: "using-typescript" },
-  { text: "Server Side Rendering", url: "using-ssr" },
-  { text: "Deferred Static Generation", url: "using-dsg" },
   {
-    text: "Page 3",
+    text: "Oldal 3",
     url: "page-3",
     badge: false,
     description:
@@ -54,30 +39,23 @@ const samplePageLinks = [
 ]
 
 const moreLinks = [
-  { text: "Join us on Discord", url: "https://gatsby.dev/discord" },
+  { text: "Budapesti Értéktőzsde", 
+    url: "https://www.bet.hu/" },
   {
-    text: "Documentation",
-    url: "https://gatsbyjs.com/docs/",
+    text: "S&P 500",
+    url: "https://www.ishares.com/de/privatanleger/de/produkte/253743/ishares-sp-500-b-ucits-etf-acc-fund?switchLocale=y&siteEntryPassthrough=true",
   },
   {
-    text: "Starters",
-    url: "https://gatsbyjs.com/starters/",
-  },
-  {
-    text: "Showcase",
-    url: "https://gatsbyjs.com/showcase/",
-  },
-  {
-    text: "Contributing",
-    url: "https://www.gatsbyjs.com/contributing/",
-  },
-  { text: "Issues", url: "https://github.com/gatsbyjs/gatsby/issues" },
+    text: "Warren Buffet könyvajánlásai",
+    url: "https://www.portfolio.hu/short/20201226/ezt-a-4-konyvet-ajanlja-warren-buffett-azoknak-akik-befektetesekrol-tanulnanak-463156",
+  }
 ]
 
 const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
 
-const IndexPage = () => (
+const IndexPage = ({data}) => (
   <Layout>
+
     <div className={styles.textCenter}>
       <StaticImage
         src="../images/example.png"
@@ -88,11 +66,13 @@ const IndexPage = () => (
         alt=""
         style={{ marginBottom: `var(--space-3)` }}
       />
+
       <h1>
-        Welcome to <b>Gatsby!</b>
+        Egyszerűen a <b>befektetésekről</b> !
       </h1>
+
       <p className={styles.intro}>
-        <b>Example pages:</b>{" "}
+        <b>További oldalak:</b>{" "}
         {samplePageLinks.map((link, i) => (
           <React.Fragment key={link.url}>
             <Link to={link.url}>{link.text}</Link>
@@ -100,9 +80,9 @@ const IndexPage = () => (
           </React.Fragment>
         ))}
         <br />
-        Edit <code>src/pages/index.js</code> to update this page.
       </p>
     </div>
+
     <ul className={styles.list}>
       {links.map(link => (
         <li key={link.url} className={styles.listItem}>
@@ -116,20 +96,46 @@ const IndexPage = () => (
         </li>
       ))}
     </ul>
+
+    <div>
+        <h2>Blog bejegyzések</h2>
+        {data.allMarkdownRemark.edges.map(({node}) => (
+          <div key={node.id}>
+            <h4>{node.frontmatter.title}</h4>
+            <p>{node.excerpt}</p>
+            <span>{node.frontmatter.date}</span>
+          </div>
+        ))}
+    </div>
+
     {moreLinks.map((link, i) => (
       <React.Fragment key={link.url}>
         <a href={`${link.url}${utmParameters}`}>{link.text}</a>
         {i !== moreLinks.length - 1 && <> · </>}
       </React.Fragment>
     ))}
+
   </Layout>
 )
 
-/**
- * Head export to define metadata for the page
- *
- * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
- */
 export const Head = () => <Seo title="Home" />
 
 export default IndexPage
+
+export const query = graphql`
+  query {
+    allMarkdownRemark {
+      edges {
+        node {
+          frontmatter {
+            date
+            description
+            title
+          }
+          excerpt
+        }
+      }
+      totalCount
+    }
+  }
+`
