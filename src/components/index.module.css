@@ -22,15 +22,7 @@
 }
 
 .listItem:nth-child(2)::marker {
-  color: #159bf3;
-}
-
-.listItem:nth-child(3)::marker {
   color: #8eb814;
-}
-
-.listItem:nth-child(4)::marker {
-  color: #663399;
 }
 
 .listItemLink {

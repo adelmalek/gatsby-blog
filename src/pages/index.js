@@ -1,10 +1,35 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import styled from "styled-components"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
+
+const BlogDiv = styled.div`
+  padding: 17px 0;
+`;
+
+const BlogLink = styled(Link)`
+  text-decoration: none;
+`;
+
+const BlogTitle = styled.h1`
+  margin: 30px;
+`;
+
+const MoreLinksDiv = styled.div`
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+
+  a {
+    padding-left: 20px;
+    color: #8a6534;
+  }
+`;
+
 
 const links = [
   {
@@ -58,18 +83,18 @@ const IndexPage = ({data}) => (
 
     <div className={styles.textCenter}>
       <StaticImage
-        src="../images/example.png"
+        src="../images/logo.png"
         loading="eager"
-        width={64}
+        width={94}
         quality={95}
         formats={["auto", "webp", "avif"]}
-        alt=""
+        alt="logo"
         style={{ marginBottom: `var(--space-3)` }}
       />
 
-      <h1>
+      <BlogTitle>
         Egyszerűen a <b>befektetésekről</b> !
-      </h1>
+      </BlogTitle>
 
       <p className={styles.intro}>
         <b>További oldalak:</b>{" "}
@@ -100,20 +125,23 @@ const IndexPage = ({data}) => (
     <div>
         <h2>Blog bejegyzések</h2>
         {data.allMarkdownRemark.edges.map(({node}) => (
-          <div key={node.id}>
-            <h4>{node.frontmatter.title}</h4>
+          <BlogDiv key={node.id}>
+            <BlogLink to={node.fields.slug}><h4>{node.frontmatter.title}</h4></BlogLink>
             <p>{node.excerpt}</p>
             <span>{node.frontmatter.date}</span>
-          </div>
+          </BlogDiv>
         ))}
     </div>
 
-    {moreLinks.map((link, i) => (
-      <React.Fragment key={link.url}>
-        <a href={`${link.url}${utmParameters}`}>{link.text}</a>
-        {i !== moreLinks.length - 1 && <> · </>}
-      </React.Fragment>
-    ))}
+    <MoreLinksDiv>
+    
+      {moreLinks.map((link, i) => (
+        <React.Fragment key={link.url}>
+          <a href={`${link.url}${utmParameters}`}>{link.text}</a>
+        </React.Fragment>
+      ))}
+
+    </MoreLinksDiv>
 
   </Layout>
 )
@@ -124,18 +152,21 @@ export default IndexPage
 
 export const query = graphql`
   query {
-    allMarkdownRemark {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
+          id
           frontmatter {
             date
             description
             title
           }
+          fields {
+            slug
+          }
           excerpt
         }
       }
-      totalCount
     }
   }
 `

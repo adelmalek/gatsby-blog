@@ -6,8 +6,7 @@ import Seo from "../components/seo"
 
 const Third = () => (
   <Layout>
-    <h1>Hi from the third page</h1>
-    <p>Welcome to page 3</p>
+    <h1>Ez a harmadik oldal</h1>
     <Link to="/">Vissza a főoldalra</Link>
   </Layout>
 )

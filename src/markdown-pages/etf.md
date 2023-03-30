@@ -3,7 +3,7 @@ title: "Tőzsdén Kereskedett Befektetési Alapok"
 date: "2023-03-28"
 ---
 
-# Mi az az ETF?
+## Mi az az ETF?
 
 Az ETF a tőzsdén forgalombe kerülő alap (az ETF rövidítés - exchange-traded fund). Ugyanúgy működnek mint az egyéb alapok, mint pl. a nyilvánosság számára ismert befektetési alapok, csak azok részesedéseivel (részvényeivel) a tőzsdéken is kereskednek.
 
@@ -20,6 +20,7 @@ Az ETF a tőzsdén forgalombe kerülő alap (az ETF rövidítés - exchange-trad
 - rugalmasság
 - megfelel az UCITS kritériumainak
 
+___
 
 ## _Miért és hol érdemes befektetni?_
 

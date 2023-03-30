@@ -18,7 +18,7 @@ Hogyan válasszunk pénzügyi szolgáltatót?
     allowfullscreen>
 </iframe>
 
+***
 
-*"A kisbefektetőnek úgy kellene viselkednie, mint egy befeketetőnek, nem mint egy spekulánsnak."*
->Benjamin Graham
+*"A kisbefektetőnek úgy kellene viselkednie, mint egy befeketetőnek, nem mint egy spekulánsnak." Benjamin Graham*
 
