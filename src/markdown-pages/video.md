@@ -1,9 +1,8 @@
 ---
-title: 'Dönts jól a pénzügyeidről'
-date: '2023-03-29'
-description: 'Hogyan hozzunk meg pénzügyi döntéseket?'
+title: "Dönts jól a pénzügyeidről"
+date: "2023-03-29"
+description: "Hogyan hozzunk meg pénzügyi döntéseket?"
 ---
-
 
 Hogyan befolyásolják döntéseink az életünket?
 Igaz e ez a mondás? Amennyiben szegénynek születtél, az nem a te hibád. Azonban, ha szegényként halsz meg, az a te hibád.

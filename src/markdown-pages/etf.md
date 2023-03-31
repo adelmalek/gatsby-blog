@@ -1,6 +1,7 @@
 ---
 title: "Tőzsdén Kereskedett Befektetési Alapok"
 date: "2023-03-28"
+description: "ETF-ről bövebben"
 ---
 
 ## Mi az az ETF?
